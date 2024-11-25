@@ -24,21 +24,12 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun App() {
     PreComposeApp {
-        var visible by remember { mutableStateOf(true) }
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(Res.drawable.compose_multiplatform),
-                contentDescription = "App Icon",
-                modifier = Modifier.fillMaxWidth()
-            )
-            Button(onClick = { visible = !visible }) {
-                Text("Toggle Visibility")
-            }
-            AnimatedVisibility(visible) {
-                Text("Hello, World!")
+
+        val colors = getColorsTheme()
+
+        AppTheme {
+            Column(modifier = Modifier.fillMaxSize()) {
+                Text("Welcome")
             }
         }
     }

@@ -47,6 +47,8 @@ kotlin {
 
             api(libs.precompose.navigation)
             api(libs.precompose.viewmodel)
+
+            api(compose.materialIconsExtended)
         }
     }
 }
@@ -75,6 +77,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    buildFeatures {
+        compose = true
     }
 }
 

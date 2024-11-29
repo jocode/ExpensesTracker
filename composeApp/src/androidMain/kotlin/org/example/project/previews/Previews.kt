@@ -3,8 +3,10 @@ package org.example.project.previews
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import org.example.project.data.ExpenseManager
 import org.example.project.domain.model.Expense
 import org.example.project.domain.model.ExpenseCategory
+import org.example.project.ui.ExpensesScreen
 import org.example.project.ui.components.ExpenseItem
 import org.example.project.ui.components.ExpensesHeader
 import org.example.project.ui.components.ExpensesTotalHeader
@@ -30,15 +32,15 @@ fun ExpensesHeaderPreview() {
 @Composable
 fun ExpenseItemPreview(modifier: Modifier = Modifier) {
     ExpenseItem(
-        expense = expenseFake,
+        expense = ExpenseManager.fakeExpenseList.first(),
         onExpenseClick = {}
     )
 }
 
-val expenseFake = Expense(
-    id = 1,
-    amount = 100.0,
-    currency = "USD",
-    category = ExpenseCategory.GROCERIES,
-    description = "Description"
-)
+@Preview(showBackground = true)
+@Composable
+fun ExpenseScreenPreview(modifier: Modifier = Modifier) {
+    ExpensesScreen(
+        onExpenseClick = {},
+    )
+}

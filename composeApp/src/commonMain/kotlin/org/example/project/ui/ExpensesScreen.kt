@@ -10,14 +10,18 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.example.project.data.ExpenseManager
+import org.example.project.domain.model.Expense
 import org.example.project.getColorsTheme
+import org.example.project.ui.components.ExpenseItem
 import org.example.project.ui.components.ExpensesHeader
 import org.example.project.ui.components.ExpensesTotalHeader
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ExpensesScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onExpenseClick: (Expense) -> Unit
 ) {
     val colors = getColorsTheme()
 
@@ -36,8 +40,11 @@ fun ExpensesScreen(
                 )
             }
         }
-        items(emptyList<String>()) {
-            // Composable
+        items(ExpenseManager.fakeExpenseList) { expense ->
+            ExpenseItem(
+                expense = expense,
+                onExpenseClick = onExpenseClick
+            )
         }
     }
 }

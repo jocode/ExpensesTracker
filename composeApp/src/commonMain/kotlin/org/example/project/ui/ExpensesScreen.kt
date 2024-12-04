@@ -10,9 +10,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.example.project.data.ExpenseManager
 import org.example.project.domain.model.Expense
 import org.example.project.getColorsTheme
+import org.example.project.presentation.ExpensesUiState
 import org.example.project.ui.components.ExpenseItem
 import org.example.project.ui.components.ExpensesHeader
 import org.example.project.ui.components.ExpensesTotalHeader
@@ -21,7 +21,9 @@ import org.example.project.ui.components.ExpensesTotalHeader
 @Composable
 fun ExpensesScreen(
     modifier: Modifier = Modifier,
-    onExpenseClick: (Expense) -> Unit
+    uiState: ExpensesUiState,
+    onExpenseClick: (Expense) -> Unit,
+    onCategoryClick: () -> Unit
 ) {
     val colors = getColorsTheme()
 
@@ -32,15 +34,15 @@ fun ExpensesScreen(
         stickyHeader {
             Column(modifier = Modifier.background(colors.backgroundColor)) {
                 ExpensesTotalHeader(
-                    total = 100.0,
+                    total = uiState.total,
                     currency = "USD"
                 )
                 ExpensesHeader(
-                    onButtonClick = {}
+                    onButtonClick = onCategoryClick
                 )
             }
         }
-        items(ExpenseManager.fakeExpenseList) { expense ->
+        items(uiState.expenseList) { expense ->
             ExpenseItem(
                 expense = expense,
                 onExpenseClick = onExpenseClick

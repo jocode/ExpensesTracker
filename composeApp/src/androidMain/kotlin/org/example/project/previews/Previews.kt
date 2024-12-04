@@ -4,8 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import org.example.project.data.ExpenseManager
-import org.example.project.domain.model.Expense
-import org.example.project.domain.model.ExpenseCategory
+import org.example.project.presentation.ExpensesUiState
 import org.example.project.ui.ExpensesScreen
 import org.example.project.ui.components.ExpenseItem
 import org.example.project.ui.components.ExpensesHeader
@@ -41,6 +40,11 @@ fun ExpenseItemPreview(modifier: Modifier = Modifier) {
 @Composable
 fun ExpenseScreenPreview(modifier: Modifier = Modifier) {
     ExpensesScreen(
+        uiState = ExpensesUiState(
+            expenseList = ExpenseManager.fakeExpenseList,
+            total = ExpenseManager.fakeExpenseList.sumOf { it.amount }
+        ),
         onExpenseClick = {},
+        onCategoryClick = {}
     )
 }
